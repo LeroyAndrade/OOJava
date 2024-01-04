@@ -34,7 +34,7 @@ public class Main {
             this.diepte = diepte;
         }
 
-        //getter
+//getter
         public double getBreedte(){
             return breedte;
         }
