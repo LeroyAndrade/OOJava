@@ -1,18 +1,61 @@
 package org.example;
+//https://www.javatpoint.com/java-string-format
 
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+
+    public static class Voetbalclub {
+        private String naam;
+        private int aantalGewonnen;
+        private int aantalGelijk;
+        private int aantalVerloren;
+
+
+        public Voetbalclub(String nm) {
+           naam = nm;
+        }
+
+        public void verwerkResultaat(char ch) {
+            if (ch == 'w')
+                aantalGewonnen +=1 ;
+            if (ch == 'g')
+                aantalGelijk +=1;
+            if (ch == 'v')
+                aantalVerloren +=1;
+        }
+
+        public int aantalGespeeld(){
+            return aantalGewonnen + aantalGelijk + aantalVerloren;
+        }
+
+        public int aantalPunten(){
+            return (3*aantalGewonnen) + (aantalGelijk);
+        }
+
+        public String toString() {
+            return String.format("%s %d %d %d %d %d", naam, aantalGespeeld(), aantalGewonnen, aantalGelijk, aantalVerloren, aantalPunten());
+        }
+
+    }
+
+        public static void main(String[] args) {
+            Voetbalclub ajx = new Voetbalclub("Ajax      ");
+            Voetbalclub feij = new Voetbalclub("Feijenoord");
+
+            feij.verwerkResultaat('w');
+            feij.verwerkResultaat('w');
+            feij.verwerkResultaat('w');
+            feij.verwerkResultaat('g');
+            ajx.verwerkResultaat('g');
+
+            feij.verwerkResultaat('g');
+
+            System.out.println("Feijenoord punten: " + feij.aantalPunten());
+            System.out.println("Ajax gespeeld: " + ajx.aantalGespeeld() + "\n");
+
+
+            System.out.println(ajx);
+            System.out.println(feij);
         }
     }
-}
+//to do: resultaten netjes in een kolom met de betekenis van het nummer
